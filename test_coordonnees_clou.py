@@ -1,4 +1,4 @@
-from calculer_coordonnees_clou import calculer_coordonnes_clou
+from coordonnees_clou import calculer_coordonnes_clou
 
 def test_calculer_coordonnees_clou():
     a = 3
