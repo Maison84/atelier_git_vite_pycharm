@@ -1,1 +1,0 @@
-def calculer_coordonnes_clou(a, b, c, d, e):
