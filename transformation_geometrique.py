@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def calculer_reflexion_point(point, axe):
     x, y = point
     if axe == 'x':
