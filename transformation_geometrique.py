@@ -3,11 +3,9 @@ import numpy as np
 def calculer_reflexion_point(point, axe):
     x, y = point
     if axe == 'x':
-        y_prime = -y
-        return x, y_prime
+        return (x, -y)
     elif axe == 'y':
-        x_prime = -x
-        return x_prime, y
+        return (-x, y)
 
 def calculer_rotate_point(point, angle, center=(0, 0)):
   angle_rad = np.radians(angle)
@@ -27,12 +25,15 @@ def calculer_rotate_point(point, angle, center=(0, 0)):
 
 def calculer_inclinaison_point(point, angle, direction):
     m = np.tan(np.radians(angle))  # Calcul de la tangente de l'angle d'inclinaison
+    print(m)
     if direction == 'x':
         # Cisaillement horizontal
-        x_prime = point[0] + (m * point[1])
-        y_prime = point[1]
+        x = point[0] + (m * point[1])
+        y = point[1]
     elif direction == 'y':
         # Cisaillement vertical
-        x_prime = point[0]
-        y_prime = m * point[0] + point[1]
-    return round(x_prime, 2), round(y_prime, 2)
+        x = point[0]
+        y = m * point[0] + point[1]
+    return round(x, 2), round(y, 2)
+
+

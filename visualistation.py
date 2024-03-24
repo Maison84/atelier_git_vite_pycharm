@@ -1,11 +1,14 @@
 # Importation des modules nécessaires pour la manipulation des coordonnées,
 # le traitement des images, la segmentation et la manipulation des histogrammes.
 # matplotlib.pyplot est utilisé pour la visualisation graphique.
-from coordonnees_clou import *
-from traitement_image import *
-from segmentation import *
-from manupulation_histogramme import *
+from transformation_geometrique import calculer_reflexion_point
+from transformation_geometrique import calculer_rotate_point
+from transformation_geometrique import calculer_inclinaison_point
+from coordonnees_clou import calculer_coordonnes_clou
+from coordonnees_clou import appliquer_transformation_clou
 import matplotlib.pyplot as plt
+from PIL import Image
+import numpy as np
 
 # Définition des constantes qui représentent les dimensions spécifiques du clou.
 __A = 3
@@ -15,9 +18,10 @@ __D = 0.75
 __E = 2
 
 # Calcul des coordonnées du clou basé sur les dimensions définies ci-dessus.
-__COORDS_CLOU = calculer_coordonnees_clou(__A, __B, __C, __D, __E)
+__COORDS_CLOU = calculer_coordonnes_clou(__A, __B, __C, __D, __E)
 
 # Paramètres pour les transformations appliquées au clou.
+
 __CENTER_ROT = (0,0)  # Centre de rotation
 __ANGLE_ROT = 30      # Angle de rotation
 __DIR_INCL = 'x'      # Axe d'inclinaison
@@ -26,7 +30,7 @@ __AXE_REFLEX = 'x'    # Axe de réflexion
 
 # Application des transformations (réflexion, rotation, inclinaison) sur le clou
 # et stockage des coordonnées transformées.
-__REFLECTED_COORD, __ROTATED_COORD, __INCLIN_COORD = appliquer_transormation_clou(__COORDS_CLOU, __CENTER_ROT, __ANGLE_ROT, __DIR_INCL, __ANGLE_INCL, __AXE_REFLEX)
+__REFLECTED_COORD, __ROTATED_COORD, __INCLIN_COORD = appliquer_transformation_clou(__COORDS_CLOU, __CENTER_ROT, __ANGLE_ROT, __DIR_INCL, __ANGLE_INCL, __AXE_REFLEX)
 
 # Chemins vers les images originale et en niveaux de gris.
 __PATH_IMAGE_ORIG = 'image_couleur.jpg'
