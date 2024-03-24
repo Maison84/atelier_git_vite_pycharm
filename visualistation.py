@@ -54,10 +54,11 @@ def visualiser_points_clou(coordonnees_et_noms):
     plt.show()  # Affichage de la figure
 
 # Fonction pour visualiser une image originale et son équivalent en niveaux de gris.
+
 def visualiser_image_couleur_ng(chemin_vers_image_org, chemin_vers_image_ng):
     # Chargement des images
-    image1 = Image.open(chemin_vers_image_org)
-    image2 = Image.open(chemin_vers_image_ng)
+    image1 = Image.open(r"C:\Users\maiso\Documents\ETS\H24\INF136\INF136 - H2024 - Projet\image_couleur.jpg")
+    image2 = Image.open(r"C:\Users\maiso\Documents\ETS\H24\INF136\INF136 - H2024 - Projet\image_niveaux_de_gris.jpg")
 
     # Création d'une figure avec deux sous-graphiques pour les deux images.
     plt.figure(figsize=(10, 5))  # Taille de la figure
