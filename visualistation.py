@@ -4,7 +4,7 @@
 from transformation_geometrique import calculer_reflexion_point
 from transformation_geometrique import calculer_rotate_point
 from transformation_geometrique import calculer_inclinaison_point
-#from traitement_image import appliquer_rgb_to_gry
+from traitement_image import appliquer_rgb_to_gry, appliquer_transformation_1, appliquer_transformation_2
 from coordonnees_clou import calculer_coordonnes_clou
 from coordonnees_clou import appliquer_transformation_clou
 import matplotlib.pyplot as plt
@@ -31,11 +31,13 @@ __AXE_REFLEX = 'x'    # Axe de réflexion
 
 # Application des transformations (réflexion, rotation, inclinaison) sur le clou
 # et stockage des coordonnées transformées.
-#__REFLECTED_COORD, __ROTATED_COORD, __INCLIN_COORD = appliquer_transformation_clou(__COORDS_CLOU, __CENTER_ROT, __ANGLE_ROT, __DIR_INCL, __ANGLE_INCL, __AXE_REFLEX)
+__REFLECTED_COORD, __ROTATED_COORD, __INCLIN_COORD = appliquer_transformation_clou(__COORDS_CLOU, __CENTER_ROT, __ANGLE_ROT, __DIR_INCL, __ANGLE_INCL, __AXE_REFLEX)
 
 # Chemins vers les images originale et en niveaux de gris.
-__PATH_IMAGE_ORIG = 'chemin_vers_image_org.jpg'
-__PATH_IMAGE_NG = 'chemin_vers_image_ng.jpg'
+chemin_vers_image_org = Image.open(r"C:\Users\maiso\Documents\ETS\H24\INF136\INF136 - H2024 - Projet\image_couleur.jpg")
+chemin_vers_image_ng = Image.open(r"C:\Users\maiso\Documents\ETS\H24\INF136\INF136 - H2024 - Projet\image_niveaux_de_gris.jpg")
+__PATH_IMAGE_ORIG = chemin_vers_image_org
+__PATH_IMAGE_NG = chemin_vers_image_ng
 
 # Fonction pour visualiser les points du clou.
 def visualiser_points_clou(coordonnees_et_noms):
@@ -57,9 +59,6 @@ def visualiser_points_clou(coordonnees_et_noms):
 # Fonction pour visualiser une image originale et son équivalent en niveaux de gris.
 
 def visualiser_image_couleur_ng(chemin_vers_image_org, chemin_vers_image_ng):
-    # Chargement des images
-    chemin_vers_image_org = Image.open(r"C:\Users\maiso\Documents\ETS\H24\INF136\INF136 - H2024 - Projet\image_couleur.jpg")
-    chemin_vers_image_ng = Image.open(r"C:\Users\maiso\Documents\ETS\H24\INF136\INF136 - H2024 - Projet\image_niveaux_de_gris.jpg")
 
     # Création d'une figure avec deux sous-graphiques pour les deux images.
     plt.figure(figsize=(10, 5))  # Taille de la figure
@@ -87,7 +86,7 @@ def visualiser_transforms_image(path_image_ng, radius=2):
     """
 
     # Ouverture de l'image et conversion en tableau NumPy pour le traitement
-    img = Image.open(path_image_ng).convert('L')
+    img = chemin_vers_image_ng.convert('L')
     img_array = np.array(img)
 
     # Application des transformations sur l'image
@@ -172,7 +171,7 @@ if __name__ == '__main__':
     # des images en couleur et en niveaux de gris, des transformations d'image
     # et de l'image segmentée.
     visualiser_points_clou(__COORDS_CLOU)
-    #visualiser_transformations_clou(__REFLECTED_COORD, __ROTATED_COORD, __INCLIN_COORD)
-    #visualiser_image_couleur_ng(__PATH_IMAGE_ORIG, __PATH_IMAGE_NG)
-    #visualiser_transforms_image(__PATH_IMAGE_NG)
+    visualiser_transformations_clou(__REFLECTED_COORD, __ROTATED_COORD, __INCLIN_COORD)
+    visualiser_image_couleur_ng(__PATH_IMAGE_ORIG, __PATH_IMAGE_NG)
+    visualiser_transforms_image(__PATH_IMAGE_NG)
     #visualiser_seg_image(__PATH_IMAGE_NG)
