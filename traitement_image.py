@@ -11,7 +11,7 @@ def appliquer_rgb_to_gry(chemin_image_couleur, chemin_sauvegarde_gris):
     largeur, hauteur = image_couleur.size
 
     # Créer une nouvelle image en niveaux de gris
-    image_gris = Image.new("L", (largeur, hauteur))
+    image_gris = Image.new((largeur, hauteur))
 
     # Parcourir chaque pixel de l'image en couleur et calculer la moyenne des composantes RVB
     for y in range(hauteur):

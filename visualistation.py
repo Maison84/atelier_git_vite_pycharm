@@ -4,7 +4,7 @@
 from transformation_geometrique import calculer_reflexion_point
 from transformation_geometrique import calculer_rotate_point
 from transformation_geometrique import calculer_inclinaison_point
-from traitement_image import appliquer_rgb_to_gry
+#from traitement_image import appliquer_rgb_to_gry
 from coordonnees_clou import calculer_coordonnes_clou
 from coordonnees_clou import appliquer_transformation_clou
 import matplotlib.pyplot as plt
@@ -31,7 +31,7 @@ __AXE_REFLEX = 'x'    # Axe de réflexion
 
 # Application des transformations (réflexion, rotation, inclinaison) sur le clou
 # et stockage des coordonnées transformées.
-__REFLECTED_COORD, __ROTATED_COORD, __INCLIN_COORD = appliquer_transformation_clou(__COORDS_CLOU, __CENTER_ROT, __ANGLE_ROT, __DIR_INCL, __ANGLE_INCL, __AXE_REFLEX)
+#__REFLECTED_COORD, __ROTATED_COORD, __INCLIN_COORD = appliquer_transformation_clou(__COORDS_CLOU, __CENTER_ROT, __ANGLE_ROT, __DIR_INCL, __ANGLE_INCL, __AXE_REFLEX)
 
 # Chemins vers les images originale et en niveaux de gris.
 __PATH_IMAGE_ORIG = 'chemin_vers_image_org.jpg'
@@ -172,7 +172,7 @@ if __name__ == '__main__':
     # des images en couleur et en niveaux de gris, des transformations d'image
     # et de l'image segmentée.
     visualiser_points_clou(__COORDS_CLOU)
-    visualiser_transformations_clou(__REFLECTED_COORD, __ROTATED_COORD, __INCLIN_COORD)
-    visualiser_image_couleur_ng(__PATH_IMAGE_ORIG, __PATH_IMAGE_NG)
-    visualiser_transforms_image(__PATH_IMAGE_NG)
-    visualiser_seg_image(__PATH_IMAGE_NG)
+    #visualiser_transformations_clou(__REFLECTED_COORD, __ROTATED_COORD, __INCLIN_COORD)
+    #visualiser_image_couleur_ng(__PATH_IMAGE_ORIG, __PATH_IMAGE_NG)
+    #visualiser_transforms_image(__PATH_IMAGE_NG)
+    #visualiser_seg_image(__PATH_IMAGE_NG)
