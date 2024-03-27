@@ -1,8 +1,8 @@
 from PIL import Image
 import numpy as np
 
-chemin_sauvegarde_gris = r"C:\Users\maiso\Documents\ETS\H24\INF136\INF136 - H2024 - Projet\image_ng.jpg"
-chemin_image_couleur = r"C:\Users\maiso\Documents\ETS\H24\INF136\INF136 - H2024 - Projet\image_couleur.jpg"
+chemin_sauvegarde_gris = "image_niveaux_de_gris.jpg"
+chemin_image_couleur = "image_couleur.png"
 def appliquer_rgb_to_gry(chemin_image_couleur, chemin_sauvegarde_gris):
     # Ouvrir l'image en couleur
     image_couleur = Image.open(chemin_image_couleur)
