@@ -7,6 +7,8 @@ from transformation_geometrique import calculer_inclinaison_point
 from traitement_image import appliquer_rgb_to_gry, appliquer_transformation_1, appliquer_transformation_2
 from coordonnees_clou import calculer_coordonnes_clou
 from coordonnees_clou import appliquer_transformation_clou
+from manipulation_histogramme import calculer_histogramme
+from segmentation import regrouper_points
 import matplotlib.pyplot as plt
 from PIL import Image
 import numpy as np
@@ -119,13 +121,13 @@ def visualiser_seg_image(path_image_ng, radius=2, w=3):
     """
 
     # Ouverture et traitement de l'image
-    img = Image.open(path_image_ng).convert('L')
+    img = chemin_vers_image_ng.convert('L')
     img_array = np.array(img)
     image_trasf_2 = appliquer_transformation_2(img_array, radius)
 
     # Calcul de l'histogramme et segmentation
     tab_histo = calculer_histogramme(image_trasf_2, w)
-    labels2 = regrouper_points(tab_histo)
+    labels2 = regrouper_points(tab_histo, 8)
     segmented_image = labels2.reshape(img_array.shape[0] - w + 1, img_array.shape[1] - w + 1)
 
     # Affichage de l'image segmentée
@@ -170,8 +172,8 @@ if __name__ == '__main__':
     # Visualisation des points du clou, des transformations appliquées,
     # des images en couleur et en niveaux de gris, des transformations d'image
     # et de l'image segmentée.
-    visualiser_points_clou(__COORDS_CLOU)
-    visualiser_transformations_clou(__REFLECTED_COORD, __ROTATED_COORD, __INCLIN_COORD)
-    visualiser_image_couleur_ng(__PATH_IMAGE_ORIG, __PATH_IMAGE_NG)
-    visualiser_transforms_image(__PATH_IMAGE_NG)
-    #visualiser_seg_image(__PATH_IMAGE_NG)
+    #visualiser_points_clou(__COORDS_CLOU)
+    #visualiser_transformations_clou(__REFLECTED_COORD, __ROTATED_COORD, __INCLIN_COORD)
+    #visualiser_image_couleur_ng(__PATH_IMAGE_ORIG, __PATH_IMAGE_NG)
+    #visualiser_transforms_image(__PATH_IMAGE_NG)
+    visualiser_seg_image(__PATH_IMAGE_NG)
