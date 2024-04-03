@@ -21,7 +21,7 @@ if __name__ == '__main__':
     path_image_ng = 'image_niveaux_de_gris.jpg'
 
     # Conversion d'une image couleur en niveaux de gris et visualisation des deux images
-    rgb_to_gry(path_image_orig, path_image_ng)
+    appliquer_rgb_to_gry(path_image_orig, path_image_ng)
     visualiser_image_couleur_ng(path_image_orig, path_image_ng)
 
     # Ouverture de l'image en niveaux de gris et conversion en tableau NumPy
@@ -29,8 +29,9 @@ if __name__ == '__main__':
     img_array = np.array(img)
 
     # Application de transformations sur l'image et stockage des résultats
+    radius = 2
     image_trasf_1 = appliquer_transformation_1(img_array)
-    image_trasf_2 = appliquer_transformation_2(img_array, radius=2)
+    image_trasf_2 = appliquer_transformation_2(img_array, radius)
 
     # Création d'une liste pour stocker les images et les titres correspondants
     images = [img_array, image_trasf_1, image_trasf_2]

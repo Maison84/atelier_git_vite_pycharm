@@ -36,8 +36,8 @@ __AXE_REFLEX = 'x'    # Axe de réflexion
 __REFLECTED_COORD, __ROTATED_COORD, __INCLIN_COORD = appliquer_transformation_clou(__COORDS_CLOU, __CENTER_ROT, __ANGLE_ROT, __DIR_INCL, __ANGLE_INCL, __AXE_REFLEX)
 
 # Chemins vers les images originale et en niveaux de gris.
-chemin_vers_image_org = Image.open(r"C:\Users\maiso\Documents\ETS\H24\INF136\INF136 - H2024 - Projet\image_couleur.jpg")
-chemin_vers_image_ng = Image.open(r"C:\Users\maiso\Documents\ETS\H24\INF136\INF136 - H2024 - Projet\image_niveaux_de_gris.jpg")
+chemin_vers_image_org = Image.open("image_couleur.jpg")
+chemin_vers_image_ng = Image.open("image_niveaux_de_gris.jpg")
 __PATH_IMAGE_ORIG = chemin_vers_image_org
 __PATH_IMAGE_NG = chemin_vers_image_ng
 
