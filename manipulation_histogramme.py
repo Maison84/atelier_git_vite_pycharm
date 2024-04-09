@@ -1,44 +1,55 @@
 import numpy as np
 
 
+
 def calculer_histogramme(tableau_2D, w):
-    max_val = 255
-    # Créer un tableau pour stocker les histogrammes de chaque fenêtre
-    # La taille du tableau est réduite de w-1 pour chaque dimension
-    hist_array = np.zeros((tableau_2D.shape[0] - w + 1, tableau_2D.shape[1] - w + 1, 4))
+    max_value = np.max(tableau_2D)
+
+    # Calcul du nombre de bins en fonction de la valeur maximale
+    bins = [0, max_value/4, max_value/2, (3*max_value)/4, max_value]
+
+    # Initialisation du tableau pour stocker les histogrammes
+    hist_array = np.zeros(((tableau_2D.shape[0] - w + 1) * (tableau_2D.shape[1] - w + 1), len(bins)-1))
+
+    # Compteur pour suivre la ligne actuelle dans le tableau hist_array
+    current_row = 0
 
     # Parcourir l'image pour calculer l'histogramme pour chaque fenêtre
-    for i in range(hist_array.shape[0]):
-        for j in range(hist_array.shape[1]):
+    for i in range(tableau_2D.shape[0] - w + 1):
+        for j in range(tableau_2D.shape[1] - w + 1):
             # Sélectionner la fenêtre de voisinage
             window = tableau_2D[i:i + w, j:j + w]
 
             # Calculer l'histogramme pour la fenêtre
-            hist, _ = np.histogram(window, bins=[0, 64, 128, 192, max_val + 1], range=(0, max_val))
+            hist, _ = np.histogram(window, bins=bins, range=(0, max_value))
 
             # Stocker l'histogramme dans le tableau
-            hist_array[i, j] = hist
+            hist_array[current_row] = hist
+            current_row += 1
 
-    # Redimensionner le tableau pour qu'il soit 2D
-    hist_array_redimensionne = hist_array.reshape(-1, 4)
-
-    return hist_array_redimensionne
+    return hist_array
 
 
 def calculer_distance_1(histogramme1, histogramme2):
-    # Calculer la différence au carré entre les éléments correspondants des deux histogrammes
-    difference_carre = (histogramme1 - histogramme2) ** 2
+    """
+    Calculer la distance entre deux histogrammes.
 
-    # Somme des différences au carré
-    somme_diff_carre = np.sum(difference_carre)
+    Arguments :
+    histogramme1 (numpy.ndarray) : Premier histogramme sous forme de tableau 1D NumPy.
+    histogramme2 (numpy.ndarray) : Deuxième histogramme sous forme de tableau 1D NumPy.
 
-    # Calculer la racine carrée de la somme pour obtenir la distance
-    distance = np.sqrt(somme_diff_carre)
+    Returns :
+    float : La distance entre les deux histogrammes.
+    """
+    # Vérifier que les histogrammes ont la même longueur
+    if len(histogramme1) != len(histogramme2):
+        raise ValueError("Les histogrammes doivent avoir la même longueur.")
 
+    # Calculer la distance selon la formule spécifiée
+    distance = np.sqrt(np.sum((histogramme1 - histogramme2) ** 2))
     # Arrondir le résultat à deux chiffres après la virgule
     distance_arrondie = round(distance, 2)
-
-    return distance_arrondie
+    return float(distance_arrondie)
 
 
 def calculer_distance_2(histogramme1, histogramme2):
@@ -48,4 +59,4 @@ def calculer_distance_2(histogramme1, histogramme2):
     # Arrondir le résultat à deux chiffres après la virgule
     distance_arrondie = round(distance, 2)
 
-    return distance_arrondie
+    return float(distance_arrondie)

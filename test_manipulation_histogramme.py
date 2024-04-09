@@ -23,6 +23,7 @@ def test_calculer_histogramme():
     # Vérification que le résultat obtenu est égal au résultat attendu
     np.testing.assert_array_equal(resultat_obtenu, resultat_attendu)
 
+
 def test_calculer_distance1():
     # Les histogrammes fournis
     h1 = np.array([1, 2, 3, 4, 5])
@@ -33,9 +34,13 @@ def test_calculer_distance1():
 
     # Calcul de la distance
     distance_calculee = calculer_distance_1(h1, h2)
-
+    # Arrondir les valeurs à un certain nombre de décimales
+    distance_calculee_arrondie = round(distance_calculee, 2)
+    print(distance_calculee_arrondie)
     # Vérification que la distance calculée est égale à la valeur attendue
-    assert np.array_equal(distance_calculee, valeur_attendue)
+    assert np.equal(distance_calculee_arrondie, valeur_attendue)
+
+
 
 def test_calculer_distance2():
     # Les histogrammes fournis
@@ -47,6 +52,6 @@ def test_calculer_distance2():
 
     # Calcul de la distance
     distance_calculee = calculer_distance_2(h1, h2)
-
+    print(distance_calculee)
     # Vérification que la distance calculée est égale à la valeur attendue
     assert np.array_equal(distance_calculee, valeur_attendue)

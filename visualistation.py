@@ -36,10 +36,10 @@ __AXE_REFLEX = 'x'    # Axe de réflexion
 __REFLECTED_COORD, __ROTATED_COORD, __INCLIN_COORD = appliquer_transformation_clou(__COORDS_CLOU, __CENTER_ROT, __ANGLE_ROT, __DIR_INCL, __ANGLE_INCL, __AXE_REFLEX)
 
 # Chemins vers les images originale et en niveaux de gris.
+
+
 chemin_vers_image_org = Image.open("image_couleur.jpg")
 chemin_vers_image_ng = Image.open("image_niveaux_de_gris.jpg")
-__PATH_IMAGE_ORIG = chemin_vers_image_org
-__PATH_IMAGE_NG = chemin_vers_image_ng
 
 # Fonction pour visualiser les points du clou.
 def visualiser_points_clou(coordonnees_et_noms):
@@ -121,19 +121,29 @@ def visualiser_seg_image(path_image_ng, radius=2, w=3):
     """
 
     # Ouverture et traitement de l'image
-    img = chemin_vers_image_ng.convert('L')
+    img = chemin_vers_image_ng.convert('L')  # Correction du nom de la variable
     img_array = np.array(img)
+
+
+    # Application de la transformation
     image_trasf_2 = appliquer_transformation_2(img_array, radius)
+
 
     # Calcul de l'histogramme et segmentation
     tab_histo = calculer_histogramme(image_trasf_2, w)
-    labels2 = regrouper_points(tab_histo, 8)
+
+
+
+    labels2 = regrouper_points(tab_histo, k=2)
+
+
     segmented_image = labels2.reshape(img_array.shape[0] - w + 1, img_array.shape[1] - w + 1)
 
     # Affichage de l'image segmentée
     plt.imshow(segmented_image, cmap='gray')
     plt.title("Image Segmentée")
     plt.show()  # Affichage de l'image segmentée
+
 
 def visualiser_transformations_clou(*coordonnees_lists):
     """
@@ -168,12 +178,14 @@ def visualiser_transformations_clou(*coordonnees_lists):
 
 if __name__ == '__main__':
     # Bloc principal pour exécuter les fonctions de visualisation
-
+    __PATH_IMAGE_ORIG = chemin_vers_image_org
+    __PATH_IMAGE_NG = chemin_vers_image_ng
     # Visualisation des points du clou, des transformations appliquées,
     # des images en couleur et en niveaux de gris, des transformations d'image
     # et de l'image segmentée.
-    #visualiser_points_clou(__COORDS_CLOU)
-    #visualiser_transformations_clou(__REFLECTED_COORD, __ROTATED_COORD, __INCLIN_COORD)
-    #visualiser_image_couleur_ng(__PATH_IMAGE_ORIG, __PATH_IMAGE_NG)
-    #visualiser_transforms_image(__PATH_IMAGE_NG)
+    visualiser_points_clou(__COORDS_CLOU)
+    visualiser_transformations_clou(__REFLECTED_COORD, __ROTATED_COORD, __INCLIN_COORD)
+    visualiser_image_couleur_ng(__PATH_IMAGE_ORIG, __PATH_IMAGE_NG)
+    visualiser_transforms_image(__PATH_IMAGE_NG)
     visualiser_seg_image(__PATH_IMAGE_NG)
+

@@ -17,15 +17,15 @@ if __name__ == '__main__':
     visualiser_transformations_clou(reflected_points_list, rotated_points_list, inclin_points_list)
 
     # Chemin des images d'origine et en niveaux de gris
-    path_image_orig = 'image_couleur.jpg'
-    path_image_ng = 'image_niveaux_de_gris.jpg'
+    chemin_vers_image_org = Image.open("image_couleur.jpg")
+    chemin_vers_image_ng = Image.open("image_niveaux_de_gris.jpg")
 
     # Conversion d'une image couleur en niveaux de gris et visualisation des deux images
-    appliquer_rgb_to_gry(path_image_orig, path_image_ng)
-    visualiser_image_couleur_ng(path_image_orig, path_image_ng)
+    appliquer_rgb_to_gry(chemin_vers_image_org, chemin_vers_image_ng)
+    visualiser_image_couleur_ng(chemin_vers_image_org, chemin_vers_image_ng)
 
     # Ouverture de l'image en niveaux de gris et conversion en tableau NumPy
-    img = Image.open(path_image_ng).convert('L')
+    img = Image.open('image_niveaux_de_gris.jpg').convert('L')
     img_array = np.array(img)
 
     # Application de transformations sur l'image et stockage des résultats
@@ -51,7 +51,7 @@ if __name__ == '__main__':
     # Calcul d'un histogramme pour l'image transformée et regroupement des points
     w = 3
     tab_histo = calculer_histogramme(image_trasf_2, w)
-    labels2 = regrouper_points(tab_histo)
+    labels2 = regrouper_points(tab_histo, k=5)
 
     # Redimensionnement et affichage de l'image segmentée
     segmented_image = labels2.reshape(img_array.shape[0] - w + 1, img_array.shape[1] - w + 1)

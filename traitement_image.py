@@ -4,13 +4,13 @@ import numpy as np
 
 def appliquer_rgb_to_gry(image_couleur, image_niveaux_de_gris):
     # Ouvrir l'image en couleur
-    image_couleur = Image.open(image_couleur)
+    image_couleur = Image.open('image_couleur.jpg')
 
     # Obtenir les dimensions de l'image
     largeur, hauteur = image_couleur.size
 
     # Créer une nouvelle image en niveaux de gris
-    image_gris = Image.new((largeur, hauteur))
+    image_gris = Image.new('L',(largeur, hauteur))
 
     # Parcourir chaque pixel de l'image en couleur et calculer la moyenne des composantes RVB
     for y in range(hauteur):
@@ -25,15 +25,15 @@ def appliquer_rgb_to_gry(image_couleur, image_niveaux_de_gris):
             image_gris.putpixel((x, y), niveau_gris)
 
     # Sauvegarder l'image en niveaux de gris
-    image_gris.save(image_niveaux_de_gris)
+    image_gris.save('image_niveaux_de_gris.jpg')
 
     # Affichage d'un message pour confirmer la sauvegarde
     print("Image en niveaux de gris sauvegardée avec succès.")
 
 
-def appliquer_transformation_1(image_gris):
+def appliquer_transformation_1(image_niveaux_gris):
     # Définir la taille de l'image
-    hauteur, largeur = image_gris.shape
+    hauteur, largeur = image_niveaux_gris.shape
 
     # Créer un tableau pour stocker le résultat de la transformation
     resultat = np.zeros((hauteur, largeur), dtype=np.uint8)
@@ -47,7 +47,7 @@ def appliquer_transformation_1(image_gris):
                 resultat[y, x] = 0
             else:
                 # Récupérer la valeur de gris du pixel central
-                g_c = image_gris[y, x]
+                g_c = image_niveaux_gris[y, x]
 
                 # Initialiser le motif binaire
                 motif_binaire = ""
@@ -59,7 +59,7 @@ def appliquer_transformation_1(image_gris):
                 # Parcourir les voisins du pixel central dans l'ordre de suivi
                 for voisin_y, voisin_x in voisins_coords:
                     # Récupérer la valeur de gris du voisin
-                    g_v = image_gris[voisin_y, voisin_x]
+                    g_v = image_niveaux_gris[voisin_y, voisin_x]
 
                     # Comparer avec la valeur du pixel central
                     if g_v >= g_c:
@@ -99,11 +99,11 @@ def appliquer_transformation_2(image_gris, rayon):
                 somme_logarithmique += np.log10(
                     1 + abs(image_gris[y - rayon, x + rayon] - 2 * image_gris[y, x] + image_gris[y + rayon, x - rayon]))
 
-                # Assigner la valeur du pixel résultant
-                resultat[y, x] = somme_logarithmique
+                # Assigner la valeur du pixel résultant, en prenant soin de ne pas dépasser 255
+                resultat[y, x] = min(somme_logarithmique, 255)
 
     # Convertir la matrice résultante de float à int
-    resultat = resultat.astype(np.int32)
+    resultat = resultat.astype(np.uint8)
 
     return resultat
 
