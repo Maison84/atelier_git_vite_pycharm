@@ -3,6 +3,17 @@ import numpy as np
 
 
 def appliquer_rgb_to_gry(image_couleur, image_niveaux_de_gris):
+    '''
+        Description :
+            Transforme une image en couleur en une nouvelle image en niveaux de gris
+
+        Arguments :
+            Une string : le chemin de l'image en couleur à transformer
+            Une string : le chemin de l'image en gris à transformer
+
+        Retourne :
+            La fonction ne retourne rien mais sauvegarde l'image en niveaux de gris au chemin spécifier
+    '''
     # Ouvrir l'image en couleur
     image_couleur = Image.open('image_couleur.jpg')
 
@@ -32,6 +43,16 @@ def appliquer_rgb_to_gry(image_couleur, image_niveaux_de_gris):
 
 
 def appliquer_transformation_1(image_niveaux_gris):
+    '''
+        Description :
+            Prend une image en niveaux de gris sous forme d'un tableau et applique une transformation et extraire des caractéristiques de l'image
+
+        Arguments :
+            numpy.ndarray : un tableau 2D NumPy représentant une image en niveaux de gris
+
+        Retourne :
+            numpy.ndarray : un tableau 2D NumPy résultant de la transformation appliquée
+    '''
     # Définir la taille de l'image
     hauteur, largeur = image_niveaux_gris.shape
 
@@ -77,6 +98,17 @@ def appliquer_transformation_1(image_niveaux_gris):
 
 
 def appliquer_transformation_2(image_gris, rayon):
+    '''
+        Description :
+            Transforme les données visuelles complexes d'une image en ensemble de caractéristiques
+
+        Arguments :
+            numpy.ndarray : un tableau 2D NumPy représentant une image en niveaux de gris
+            int : un entier spécifiant le rayon du voisinage à considérer
+
+        Retourne :
+            numpy.ndarray : un tableau 2D NumPy résultant de la transformation appliquée
+    '''
     # Définir la taille de l'image
     hauteur, largeur = image_gris.shape
 
