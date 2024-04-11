@@ -1,10 +1,5 @@
 import numpy as np
-import matplotlib as plt
 from manipulation_histogramme import calculer_distance_1
-from traitement_image import appliquer_transformation_2
-from PIL import Image
-
-
 
 def regrouper_points(data_hist, k=5, max_iterations=50):
     # Générer une permutation aléatoire des indices
@@ -21,10 +16,3 @@ def regrouper_points(data_hist, k=5, max_iterations=50):
     indices_groupes = np.argmin(distances, axis=1)
 
     return indices_groupes
-
-
-
-
-    return indices_groupes
-
-

@@ -24,16 +24,17 @@ def calculer_rotate_point(point, angle, center=(0, 0)):
   return round(x_final, 2), round(y_final, 2)
 
 def calculer_inclinaison_point(point, angle, direction):
+
     m = np.tan(np.radians(angle))  # Calcul de la tangente de l'angle d'inclinaison
     print(m)
     if direction == 'x':
         # Cisaillement horizontal
-        x = point[0] + (m * point[1])
-        y = point[1]
+        x1 = point[0] + (m * point[1])
+        y1 = point[1]
     elif direction == 'y':
         # Cisaillement vertical
-        x = point[0]
-        y = m * point[0] + point[1]
-    return round(x, 2), round(y, 2)
+        x1 = point[0]
+        y1 = m * point[0] + point[1]
+    return round(x1, 2), round(y1, 2)
 
 

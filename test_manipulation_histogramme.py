@@ -6,7 +6,7 @@ from manipulation_histogramme import calculer_histogramme,calculer_distance_1,ca
 
 def test_calculer_histogramme():
     # Tableau d'entrée
-    tableau_2D = np.array([[255, 160, 10, 49],
+    tableau_2d = np.array([[255, 160, 10, 49],
                             [20, 170, 1, 121],
                             [30, 233, 230, 100],
                             [255, 23, 155, 88]])
@@ -18,7 +18,7 @@ def test_calculer_histogramme():
                                     [4, 0, 2, 3],
                                     [2, 3, 2, 2]])
     # Appel de la fonction à tester
-    resultat_obtenu = calculer_histogramme(tableau_2D, w)
+    resultat_obtenu = calculer_histogramme(tableau_2d, w)
     print(resultat_obtenu)
     # Vérification que le résultat obtenu est égal au résultat attendu
     np.testing.assert_array_equal(resultat_obtenu, resultat_attendu)

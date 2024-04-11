@@ -1,4 +1,5 @@
 # Importation des bibliothèques nécessaires
+from traitement_image import appliquer_rgb_to_gry
 from visualistation import *
 import matplotlib.pyplot as plt
 from PIL import Image
@@ -21,7 +22,7 @@ if __name__ == '__main__':
     chemin_vers_image_ng = Image.open("image_niveaux_de_gris.jpg")
 
     # Conversion d'une image couleur en niveaux de gris et visualisation des deux images
-    appliquer_rgb_to_gry(chemin_vers_image_org, chemin_vers_image_ng)
+    appliquer_rgb_to_gry(chemin_vers_image_org)
     visualiser_image_couleur_ng(chemin_vers_image_org, chemin_vers_image_ng)
 
     # Ouverture de l'image en niveaux de gris et conversion en tableau NumPy

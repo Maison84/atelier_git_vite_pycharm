@@ -1,10 +1,7 @@
 # Importation des modules nécessaires pour la manipulation des coordonnées,
 # le traitement des images, la segmentation et la manipulation des histogrammes.
 # matplotlib.pyplot est utilisé pour la visualisation graphique.
-from transformation_geometrique import calculer_reflexion_point
-from transformation_geometrique import calculer_rotate_point
-from transformation_geometrique import calculer_inclinaison_point
-from traitement_image import appliquer_rgb_to_gry, appliquer_transformation_1, appliquer_transformation_2
+from traitement_image import appliquer_transformation_1, appliquer_transformation_2
 from coordonnees_clou import calculer_coordonnes_clou
 from coordonnees_clou import appliquer_transformation_clou
 from manipulation_histogramme import calculer_histogramme
@@ -25,7 +22,7 @@ __COORDS_CLOU = calculer_coordonnes_clou(__A, __B, __C, __D, __E)
 
 # Paramètres pour les transformations appliquées au clou.
 
-__CENTER_ROT = (0,0)  # Centre de rotation
+__CENTER_ROT = (0, 0)  # Centre de rotation
 __ANGLE_ROT = 30      # Angle de rotation
 __DIR_INCL = 'x'      # Axe d'inclinaison
 __ANGLE_INCL = 20     # Angle d'inclinaison

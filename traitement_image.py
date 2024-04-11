@@ -2,7 +2,9 @@ from PIL import Image
 import numpy as np
 
 
-def appliquer_rgb_to_gry(image_couleur, image_niveaux_de_gris):
+
+
+def appliquer_rgb_to_gry(image_couleur):
     # Ouvrir l'image en couleur
     image_couleur = Image.open('image_couleur.jpg')
 
@@ -19,18 +21,13 @@ def appliquer_rgb_to_gry(image_couleur, image_niveaux_de_gris):
             r, g, b = image_couleur.getpixel((x, y))
 
             # Calculer la moyenne des composantes RVB
-            niveau_gris = (r + g + b) // 3
+            niveau_gris = int((r + g + b) / 3)
 
             # Définir la valeur de pixel de l'image en niveaux de gris
             image_gris.putpixel((x, y), niveau_gris)
 
     # Sauvegarder l'image en niveaux de gris
     image_gris.save('image_niveaux_de_gris.jpg')
-
-    # Affichage d'un message pour confirmer la sauvegarde
-    print("Image en niveaux de gris sauvegardée avec succès.")
-
-
 def appliquer_transformation_1(image_niveaux_gris):
     # Définir la taille de l'image
     hauteur, largeur = image_niveaux_gris.shape
