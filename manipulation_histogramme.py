@@ -1,23 +1,24 @@
 import numpy as np
 
 
-def calculer_histogramme(tableau_2d, w):
-    max_value = np.max(tableau_2d)
+
+def calculer_histogramme(tableau_2D, w):
+    max_value = np.max(tableau_2D)
 
     # Calcul du nombre de bins en fonction de la valeur maximale
-    bins = [0, max_value / 4, max_value / 2, (3 * max_value) / 4, max_value]
+    bins = [0, max_value/4, max_value/2, (3*max_value)/4, max_value]
 
     # Initialisation du tableau pour stocker les histogrammes
-    hist_array = np.zeros(((tableau_2d.shape[0] - w + 1) * (tableau_2d.shape[1] - w + 1), len(bins) - 1))
+    hist_array = np.zeros(((tableau_2D.shape[0] - w + 1) * (tableau_2D.shape[1] - w + 1), len(bins)-1))
 
     # Compteur pour suivre la ligne actuelle dans le tableau hist_array
     current_row = 0
 
     # Parcourir l'image pour calculer l'histogramme pour chaque fenêtre
-    for i in range(tableau_2d.shape[0] - w + 1):
-        for j in range(tableau_2d.shape[1] - w + 1):
+    for i in range(tableau_2D.shape[0] - w + 1):
+        for j in range(tableau_2D.shape[1] - w + 1):
             # Sélectionner la fenêtre de voisinage
-            window = tableau_2d[i:i + w, j:j + w]
+            window = tableau_2D[i:i + w, j:j + w]
 
             # Calculer l'histogramme pour la fenêtre
             hist, _ = np.histogram(window, bins=bins, range=(0, max_value))

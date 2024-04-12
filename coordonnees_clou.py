@@ -1,4 +1,14 @@
 def calculer_coordonnes_clou(a, b, c, d, e):
+    '''
+        Description :
+            Détermine les coordonnées d'un clou en suivant la paramétrisation
+
+        Arguments :
+            Un float : dimensions spécifiques du clou, utilisées pour calculer les coordonnées
+
+        Retourne :
+            Une liste : liste de tuple où chaque tuple contient : une chaîne de caractère indiquant le nom du point, un tuple de deux nombres représentant les coordonnées du point dans un plan 2D
+    '''
     # Calcul des coordonnées selon la paramétrisation
     pt_0 = (-b / 2, c / 2)
     pt_1 = (-b / 2, -c / 2)
@@ -15,7 +25,18 @@ from transformation_geometrique import calculer_rotate_point
 from transformation_geometrique import calculer_inclinaison_point
 
 def appliquer_transformation_clou(points_clou, center_rotation, angle_rotation, direction_inclinaison, angle_inclinaison, axe_reflexion):
+    '''
+        Description :
+            Prend un ensemble de point clés représentant un clou et applique trois types de transformation géométrique
 
+        Arguments :
+            Une liste : une liste de tuple où chaque liste contient : une chaîne de caractère indiquant le nom du point, un tuple de deux nombres représentant les coordonnées du point dans un plan 2D
+            Un tuple : le centre de rotation
+            Un float : l'angle de rotation de degrés
+
+        Retourne :
+            Un tuple des nouvelles coordonnées de point après réflexion.
+    '''
     resultats_reflexion = []
     resultats_rotation = []
     resultats_inclinaison = []
