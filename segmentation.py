@@ -1,30 +1,49 @@
 import numpy as np
 from manipulation_histogramme import calculer_distance_1
 
-def regrouper_points(data_hist, k=5, max_iterations=50):
+def regrouper_points(data, k=2, max_iterations=50):
     '''
         Description :
             Diviser un ensemble de points dans un plan 2D en un nombre défini de groupe
-
         Arguments :
             numpy.ndarray : un tableau 2D numpy représentant l'ensemble de données à partitionner
             int : le nombre de groupes à identifier dans l'ensemble de données
             int : le nombre de maximal d'itérations que l'algorithme exécutera, la valeur par défaut est 50
-
         Retourne :
             numpy.ndarray : un tableau 1D où chaque élément correspond à l'indice du centre le plus proche pour chaque point de l'ensemble de données
     '''
-    # Générer une permutation aléatoire des indices
-    indices_permutes = np.random.permutation(data_hist.shape[0])
+    # Initialisation des centres de groupe de manière aléatoire
+    val_aleatoire = np.random.choice(len(data), 2, replace=False)
+    centres = data[val_aleatoire]
+    centres = np.array([[0,2,7,0], [6,3,0,0]])
+    # Initialisation de l'affectation de groupe
+    affectations = []
 
-    # Sélectionner les k premiers indices permutés comme centres initiaux
-    centres_initiaux = data_hist[indices_permutes[:k]]
+    # Boucle principale de l'algorithme
+    for i in range(max_iterations):
+        # Calcul des distances entre chaque point et chaque centre de groupe
+        distances = np.array([[calculer_distance_1(point, centre) for centre in centres]for point in data])
 
-    distances = np.zeros((data_hist.shape[0], centres_initiaux.shape[0]))
-    for i, hist_point in enumerate(data_hist):
-        for j, hist_centroid in enumerate(centres_initiaux):
-            distances[i, j] = calculer_distance_1(hist_point, hist_centroid)
+        # Attribution de chaque point au groupe avec le centre le plus proche
+        nouveaux_centres = np.argmin(distances, axis=1)
 
-    indices_groupes = np.argmin(distances, axis=1)
+        # Vérification de la convergence
+        if np.array_equal(affectations, nouveaux_centres):
+            break
 
-    return indices_groupes
+        affectations = nouveaux_centres
+
+        # Mise à jour des centres de groupe
+        for i in range(k):
+            groupe_de_points = data[affectations == i]
+            if len(groupe_de_points) > 0:
+                centres[i] = np.mean(groupe_de_points, axis=0)
+
+
+    return affectations
+
+
+
+
+
+
